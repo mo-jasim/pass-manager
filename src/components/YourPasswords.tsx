@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react"
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, TrashIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface PasswordProps {
   id: number;
@@ -18,7 +19,6 @@ export function YourPasswords({
   passwords: PasswordProps[];
 }) {
   const [visiblePasswords, setVisiblePasswords] = useState<number[]>([]);
-
   const togglePasswordVisibility = (id: number) => {
     setVisiblePasswords((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
@@ -55,6 +55,10 @@ export function YourPasswords({
                   ) : (
                     <EyeIcon className="h-4 w-4" />
                   )}
+                </Button>
+
+                <Button variant="destructive" size="icon" onClick={() => toast.error("Oops! Can't be right now")}>
+                  <TrashIcon className="h-4 w-4" />
                 </Button>
               </div>
             </div>
