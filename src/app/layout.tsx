@@ -17,6 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
+    return <div>Missing Clerk Publishable Key</div>;
+  }
+  
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
